@@ -1,35 +1,715 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRPG ChaYiHeng</title>
+    <title>車亦蘅 - 台北市長候選人</title>
     <style>
-        body {
-            font-family: sans-serif;
-            line-height: 1.6;
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.6;
             color: #333;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+            min-height: 100vh;
         }
+
         .container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        h1 {
-            color: #444;
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #34495e;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #34495e;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff10" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .slogan {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ecf0f1;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #34495e, #2c3e50);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.9s both;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.5);
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 20px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #34495e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 17px;
+        }
+
+        .profile-image .placeholder {
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profile-image::after {
+            content: '車亦蘅';
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .profile-text h3 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .profile-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Policies Section */
+        .policies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .policy-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .policy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+        }
+
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.15);
+        }
+
+        .policy-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .policy-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Vision Section */
+        .vision-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .vision-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .vision-point {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 20px rgba(44, 62, 80, 0.3);
+        }
+
+        .vision-point:hover {
+            transform: scale(1.05);
+        }
+
+        .vision-point h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+        }
+
+        .contact-item strong {
+            margin-right: 1rem;
+            min-width: 80px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .slogan {
+                font-size: 1.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Floating particles animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float-particle 15s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>歡迎來到 TRPG 查易恆</h1>
-        <p>這是一個用於 TRPG 的工具，仍在開發中。</p>
-    </div>
+    <div class="particles" id="particles"></div>
+    
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">車亦蘅</a>
+            <ul class="nav-links">
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#policies">政見</a></li>
+                <li><a href="#vision">願景</a></li>
+                <li><a href="#contact">聯絡我們</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>車亦蘅</h1>
+                <p class="slogan">法治為本，民意為先</p>
+                <p>為台北市民創造更美好的未來</p>
+                <a href="#policies" class="cta-button">了解我的政見</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2>關於車亦蘅</h2>
+                <div class="about-content">
+                    <div class="profile-image">
+                        <img src="https://i.postimg.cc/HLfBwX1g/pixai-1821384036877509777-2.png" alt="車亦蘅候選人照片" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <div class="placeholder" style="display: none;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">👤</div>
+                                <div style="font-size: 1.2rem; font-weight: bold;">車亦蘅</div>
+                                <div style="font-size: 0.9rem; margin-top: 0.5rem;">台大法律系畢業</div>
+                                <div style="font-size: 0.9rem;">國進黨台北市長候選人</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-text">
+                        <h3>台大法律系畢業・國進黨台北市長候選人</h3>
+                        <p>車亦蘅擁有豐富的法律專業背景與公共政策經驗，台大法律系畢業後投身公共服務領域，深入了解台北市民的需求與挑戰。作為國進黨推出的台北市長候選人，他致力於打造一個更公正、更永續、更具競爭力的台北市。</p>
+                        <p>具備深厚的法學基礎與公共行政經驗，在都市規劃、環境保護、經濟發展等領域擁有專業見解。他相信透過法治精神與創新政策的結合，加上市民的共同參與，能夠讓台北成為亞洲最宜居的城市之一。</p>
+                        <p>車亦蘅秉持國進黨「進步台灣、公義社會」的理念，以「法治為本，民意為先」作為施政核心，承諾將以最誠懇的態度傾聽市民的聲音，並將這些聲音轉化為具體的政策行動。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="policies" class="section">
+            <div class="container">
+                <h2>主要政見</h2>
+                <div class="policies-grid">
+                    <div class="policy-card">
+                        <h3>⚖️ 法治城市建設</h3>
+                        <p>運用法律專業背景，建構完善的法規體系，確保市政透明公正。強化市民權益保障機制，建立高效的法律諮詢服務平台。</p>
+                    </div>
+                    <div class="policy-card">
+                        <h3>🏙️ 智慧城市發展</h3>
+                        <p>推動5G網路全面覆蓋，建置智慧交通系統，提升公共服務效率。導入AI技術改善市政服務，讓台北成為真正的智慧城市。</p>
+                    </div>
+                    <div class="policy-card">
+                        <h3>🚇 交通建設升級</h3>
+                        <p>完善捷運路網建設，提升公共運輸便利性。推動智慧停車系統，解決停車難問題，減少交通壅塞。</p>
+                    </div>
+                    <div class="policy-card">
+                        <h3>🏠 居住正義實現</h3>
+                        <p>增加社會住宅供給，協助年輕人解決居住問題。推動老舊建築更新，提升居住品質與安全。</p>
+                    </div>
+                    <div class="policy-card">
+                        <h3>💼 經濟產業發展</h3>
+                        <p>扶持新創企業，打造創新創業生態系。推動數位轉型，吸引國際企業投資，創造更多就業機會。</p>
+                    </div>
+                    <div class="policy-card">
+                        <h3>👥 社會福利完善</h3>
+                        <p>強化長照服務體系，關懷銀髮族需求。完善兒童托育政策，減輕家庭負擔，提升生育率。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vision" class="section">
+            <div class="container">
+                <h2>台北願景</h2>
+                <div class="vision-content">
+                    <p>車亦蘅的願景是將台北打造成為一個「宜居、智慧、永續」的國際城市。透過創新的政策規劃與市民的共同努力，讓台北成為亞洲最具吸引力的都市之一。</p>
+                    
+                    <div class="vision-points">
+                        <div class="vision-point">
+                            <h4>宜居城市</h4>
+                            <p>完善的公共設施、優質的居住環境、便利的生活機能</p>
+                        </div>
+                        <div class="vision-point">
+                            <h4>智慧城市</h4>
+                            <p>數位化政府服務、智慧交通系統、AI驅動的城市管理</p>
+                        </div>
+                        <div class="vision-point">
+                            <h4>永續城市</h4>
+                            <p>綠色能源、環境保護、循環經濟、低碳生活</p>
+                        </div>
+                        <div class="vision-point">
+                            <h4>國際城市</h4>
+                            <p>吸引國際投資、文化交流、觀光發展、國際合作</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>聯絡我們</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>競選總部</h3>
+                        <div class="contact-item">
+                            <strong>地址：</strong>
+                            <span>台北市中正區重慶南路一段100號</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>電話：</strong>
+                            <span>(02) 2388-0000</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>傳真：</strong>
+                            <span>(02) 2388-0001</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>信箱：</strong>
+                            <span>info@che-yiheng.tw</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h3>服務時間</h3>
+                        <div class="contact-item">
+                            <strong>週一至週五：</strong>
+                            <span>09:00 - 18:00</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>週六：</strong>
+                            <span>09:00 - 17:00</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>週日：</strong>
+                            <span>公休</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h3>志工招募</h3>
+                        <p>歡迎有志之士加入我們的競選團隊！無論您是學生、上班族或退休人士，都可以為台北的未來貢獻一份力量。</p>
+                        <div class="contact-item">
+                            <strong>報名：</strong>
+                            <span>volunteer@che-yiheng.tw</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h4>車亦蘅競選總部</h4>
+                    <p>為台北市民創造更美好的未來</p>
+                </div>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">YouTube</a>
+                </div>
+            </div>
+            <p>&copy; 2025 車亦蘅競選團隊 | 國進黨台北市長候選人. 版權所有</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const numberOfParticles = 50;
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles
+        createParticles();
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all policy cards and vision points
+        document.querySelectorAll('.policy-card, .vision-point').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
